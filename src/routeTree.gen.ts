@@ -15,6 +15,7 @@ import { Route as LoginImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as AppDashboardImport } from './routes/app/dashboard'
+import { Route as AppCategoryIndexImport } from './routes/app/category/index'
 
 // Create/Update Routes
 
@@ -39,6 +40,12 @@ const IndexRoute = IndexImport.update({
 const AppDashboardRoute = AppDashboardImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+
+const AppCategoryIndexRoute = AppCategoryIndexImport.update({
+  id: '/category/',
+  path: '/category/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardImport
       parentRoute: typeof AppRouteImport
     }
+    '/app/category/': {
+      id: '/app/category/'
+      path: '/category'
+      fullPath: '/app/category'
+      preLoaderRoute: typeof AppCategoryIndexImport
+      parentRoute: typeof AppRouteImport
+    }
   }
 }
 
@@ -81,10 +95,12 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
+  AppCategoryIndexRoute: typeof AppCategoryIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppCategoryIndexRoute: AppCategoryIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
@@ -96,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/category': typeof AppCategoryIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -103,6 +120,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/category': typeof AppCategoryIndexRoute
 }
 
 export interface FileRoutesById {
@@ -111,14 +129,15 @@ export interface FileRoutesById {
   '/app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/category/': typeof AppCategoryIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/login' | '/app/dashboard'
+  fullPaths: '/' | '/app' | '/login' | '/app/dashboard' | '/app/category'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/login' | '/app/dashboard'
-  id: '__root__' | '/' | '/app' | '/login' | '/app/dashboard'
+  to: '/' | '/app' | '/login' | '/app/dashboard' | '/app/category'
+  id: '__root__' | '/' | '/app' | '/login' | '/app/dashboard' | '/app/category/'
   fileRoutesById: FileRoutesById
 }
 
@@ -155,7 +174,8 @@ export const routeTree = rootRoute
     "/app": {
       "filePath": "app/route.tsx",
       "children": [
-        "/app/dashboard"
+        "/app/dashboard",
+        "/app/category/"
       ]
     },
     "/login": {
@@ -163,6 +183,10 @@ export const routeTree = rootRoute
     },
     "/app/dashboard": {
       "filePath": "app/dashboard.tsx",
+      "parent": "/app"
+    },
+    "/app/category/": {
+      "filePath": "app/category/index.tsx",
       "parent": "/app"
     }
   }

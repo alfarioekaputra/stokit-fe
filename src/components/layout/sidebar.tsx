@@ -9,11 +9,13 @@ import {
   Settings,
   HelpCircle,
   Layers,
+  FileStack,
 } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/app/dashboard", icon: LayoutDashboard },
+  { name: "Category", href: "/app/category", icon: FileStack },
   { name: "Inventory", href: "/inventory", icon: PackageSearch },
   { name: "Cashier", href: "/cashier", icon: ShoppingCart },
   { name: "Accounting", href: "/accounting", icon: ScrollText },

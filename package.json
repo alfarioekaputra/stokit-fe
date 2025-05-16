@@ -21,6 +21,7 @@
     "@tanstack/react-query-devtools": "^5.75.7",
     "@tanstack/react-router": "^1.120.3",
     "@tanstack/react-router-devtools": "^1.120.3",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.509.0",
@@ -31,6 +32,7 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.6",
+    "use-debounce": "^10.0.4",
     "zod": "^3.24.4"
   },
   "devDependencies": {
